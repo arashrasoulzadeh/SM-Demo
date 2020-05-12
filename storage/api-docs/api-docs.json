@@ -1,0 +1,206 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SnappMarket",
+        "version": "1"
+    },
+    "paths": {
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "requestBody": {
+                    "description": "Login",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "login failed"
+                    },
+                    "200": {
+                        "description": "login successfully"
+                    }
+                }
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "requestBody": {
+                    "description": "Register",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "regitser failed"
+                    },
+                    "200": {
+                        "description": "register successfully"
+                    }
+                }
+            }
+        },
+        "/api/auth/me": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "logout successfully"
+                    }
+                }
+            }
+        },
+        "/api/auth/refresh": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "Refresh successfully"
+                    }
+                }
+            }
+        },
+        "/guest/list": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "requestBody": {
+                    "description": "Product Index",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductIndex"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/import": {
+            "post": {
+                "tags": [
+                    "products"
+                ],
+                "requestBody": {
+                    "description": "Login",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Product": {
+                "required": [
+                    "file"
+                ],
+                "properties": {
+                    "file": {
+                        "schema": "Product",
+                        "description": "Your csv file",
+                        "type": "file"
+                    },
+                    "page": {
+                        "schema": "Product",
+                        "description": "page",
+                        "type": "int"
+                    },
+                    "category": {
+                        "schema": "Product",
+                        "description": "category id",
+                        "type": "int"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductIndex": {
+                "type": "object"
+            },
+            "User": {
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "schema": "User",
+                        "description": "Your Email",
+                        "type": "string",
+                        "example": "a@a.com"
+                    },
+                    "password": {
+                        "schema": "User",
+                        "description": "Your password",
+                        "type": "string",
+                        "example": "test1234"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
