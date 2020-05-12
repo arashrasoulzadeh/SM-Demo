@@ -41,6 +41,8 @@ also you may use ```docker-compose exec php artisan import:csv --file=filename``
 ```:80/guest/list?category=category_id```
 
 #### swagger: 
+remember to run `php artisan l5-swagger:generate` first
+
 ```
 :80/api/documentation
 ```
