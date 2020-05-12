@@ -1,10 +1,23 @@
 Demo Project for SM
 
 ### running 
+first create containers:
 
 `docker-compose up -d`
 
+copy sample env file (including db authentication info) :
+
+`cp .env.example .env`
+
+then migrate :
+
 `docker-compose exec php artisan migrate`
+
+you may create jwt secret :
+
+`docker-compose exec php artisan jwt:secret`
+
+and seed the database :
 
 `docker-compose exec php artisan db:seed`
 
